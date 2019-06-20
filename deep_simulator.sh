@@ -78,6 +78,10 @@ function usage()
 #------ current directory ------#
 curdir="$(pwd)"
 
+# Dir containing this script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+
 #-------- check usage -------#
 if [ $# -lt 1 ];
 then
@@ -116,7 +120,7 @@ PERFECT_MODE=0      #-> 0 for normal mode (with length repeat and random noise).
                     #-> 1 for perfect context-dependent pore model (without length repeat and random noise).
                     #-> 2 for generating almost perfect reads without any randomness in signals (equal to -e 0 -f 0 -s 0).
 #------- home directory ----------------#
-home=$curdir
+home=$DIR
 
 
 #------- parse arguments ---------------#
@@ -210,7 +214,7 @@ then
 	echo "home directory $home not exist " >&2
 	exit 1
 fi
-home=`./readlink.sh -f $home`
+home=`$DIR/readlink.sh -f $home`
 
 #----------- check input genome  -----------#
 if [ ! -s "$FULLFILE" ]
@@ -218,7 +222,7 @@ then
 	echo "input input_genome is null !!" >&2
 	exit 1
 fi
-FULLFILE=`./readlink.sh -f $FULLFILE`
+FULLFILE=`$DIR/readlink.sh -f $FULLFILE`
 #-> get query_name
 fulnam=`basename $FULLFILE`
 relnam=${fulnam%.*}
@@ -229,7 +233,7 @@ then
 	out_root=${relnam}_DeepSimu
 fi
 mkdir -p $out_root
-out_root=`./readlink.sh -f $out_root`
+out_root=`$DIR/readlink.sh -f $out_root`
 
 
 #--------------------------------------------------------#
