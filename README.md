@@ -1,3 +1,33 @@
+This is a fork of https://github.com/lykaust15/DeepSimulator/ with some quick and dirty hacks made to get it working on my MacBook Pro, without the need to install Anaconda.
+
+Minimal usage instructions:
+
+* Download the CPU version of Guppy from https://community.nanoporetech.com/downloads and extract it to your home directory so that you have its executables in the `~/ont-guppy-cpu/bin/` directory.
+* Run the following installations with `pip2`:
+  ```
+  pip2 install tensorflow==1.2.1
+  pip2 install tflearn==0.3.2
+  pip2 install tqdm==4.19.4
+  pip2 install scipy==0.18.1
+  pip2 install h5py==2.7.1
+  pip2 install numpy==1.13.1
+  pip2 install scikit-learn==0.20.3
+  ````
+* Run it. For example:
+
+    ```
+    ./deep_simulator.sh \
+        -i ~/genomes/GCF_000001895.5_Rnor_6.0_genomic.fna \
+        -n 10 \
+        -o ~/simulated-reads
+    ```
+
+  will output 10 simulated reads from the GCF_000001895.5_Rnor_6.0 genome into the `~/simulated-reads` folder.
+
+The original README from the original repo is preserved below, but to use this fork, you should disregard it.
+
+-----
+
 # DeepSimulator
 The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing.
 
